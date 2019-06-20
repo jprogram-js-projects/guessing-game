@@ -1,5 +1,7 @@
 # Jogo: Estou pensando em um número...
 
+![descobrirNum](https://user-images.githubusercontent.com/50529455/59880751-35421480-9384-11e9-98f7-06d5a643e302.png)
+
 (PT-BR) Criei este jogo para treinar meus conhecimentos aprendidos com a Linguagem JavaScript manipulando o DOM do HTML5, as informações estão em pt-br sobre as regras de como funciona o jogo, por ainda não ter muito conhecimento do inglês, traduzi partes do código e também este texto pelo google tradutor.
 
 Pretendo criar na wiki a documentação desse programa explicando a lógica que tive para monta-lo. Qualquer dúvida ou dicas para melhorar o algoritmo, ficarei feliz em ouvi-las e respondê-las.
