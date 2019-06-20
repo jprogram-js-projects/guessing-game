@@ -1,83 +1,84 @@
 
-var numero = Math.floor(Math.random() * 10);
-var tentativas = 4;
-var acertou = false;
+var mysterious_number = Math.floor(Math.random() * 10);
+var attempts = 4;
+var found = false;
 
-// Resposta do valor para testar: document.getElementById("dica").innerHTML = numero;
+// Resposta do valor para testar: document.getElementById("clue").innerHTML = numero;
 
 function playGame(){
-	verificaQtdeTentativas();
+	checkAttempts();
 }
 
-function getValor(){
-	var num = document.getElementById("num1").value;
+function getValue(){
+	var num = document.getElementById("value").value;
 	return num;
 }
 
-function setText(txt){
-	document.getElementById("dica").innerHTML = txt;
+function setMessage(text){
+	document.getElementById("clue").innerHTML = text;
 }
 
-function verificaSeAcertou(){
-	if(getValor() == numero){
-		setText("--> Parabéns você acertou! O Jogo será reiniciado");
-		acertou = true;
 
-		reiniciar();
+function checkItsDone(){
+	if(getValue() == mysterious_number){
+		setMessage("--> Parabéns você acertou! O Jogo será reiniciado");
+		found = true;
+
+		restart();
 	}
 	else{
-		acertou = false;
-		darDicas();
+		found = false;
+		giveTips();
 	}
 }
 
-function darDicas(){
+function giveTips(){
 
-	if(getValor() < numero){
+	if(getValue() < mysterious_number){
 		var msg = "--> Você errou, mas vou te dar uma dica: "+ 
 			" O número que pensei é maior do que você digitou!";
-		setText(msg);
+		setMessage(msg);
 	}
 
-	else if(getValor() > numero){
+	else if(getValue() > mysterious_number){
 		var msg = "---> Você errou, mas vou te dar uma dica: "+
 			"O número que estou pensando é menor do que você digitou!";
-		setText(msg);
+		setMessage(msg);
 	}
 
 	else{
-		setText("--> Valor inválido, informe novamente um valor!");
-		tentativas+=1;
+		setMessage("--> Valor inválido, informe novamente um valor!");
+		attempts+=1;
 	}
 }
 
-function verificaQtdeTentativas(){
-	tentativas-=1;
+function checkAttempts(){
+	attempts-=1;
 
-	document.getElementById("qtdeTentativas").innerHTML = "Quantidade de Tentativas que ainda possui: " + tentativas;
+	document.getElementById("qtdeTentativas").innerHTML = "Quantidade de Tentativas que ainda possui: " + attempts;
 
-	validaTentativas(tentativas);
+	checkNumberAttempts(attempts);
 }
 
-function validaTentativas(cont){
+function checkNumberAttempts(cont){
 	switch(cont){
 		case 0:
-			verificaSeAcertou();
-			if(!acertou){
-				setText("--> Você perdeu!! Tente Novamente");
+			checkItsDone();
+
+			if(!found){
+				setMessage("--> Você perdeu!! Tente Novamente");
 			}
 
-			reiniciar();
-
+			restart();
 			break;
 
 		default:
-			verificaSeAcertou();		
+			checkItsDone();		
 	}
 }
 
-function reiniciar(){
-	numero = Math.floor(Math.random() * 10);
-	tentativas = 4;
-	document.getElementById("num1").value = "";
+function restart(){
+	mysterious_number = Math.floor(Math.random() * 10);
+	attempts = 4;
+	document.getElementById("value").value = "";
 }
