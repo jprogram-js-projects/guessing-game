@@ -1,21 +1,28 @@
+/*
+	Jogo feito rapidamente aqui
+	Teoricamente está funcionando mas o código está pessimamente escrito
+	Agora que as funcionalidades principais estão funcionando
+	Vou melhorar o código retirando esses varios ifs e elses
+*/
+
+
 var numero = Math.floor(Math.random() * 10);
 var tentativas = 0;
 
 // Resposta do valor para testar
 document.getElementById("dica").innerHTML = numero;
 
-function verificarValor(){
+function verificarValor(valor){
 
-	var num = document.getElementById("num1").value;
 	tentativas += 1;
 
 	document.getElementById("qtdeTentativas").innerHTML = "Quantidade de Tentativas: " + tentativas;
 
-	if(num == numero){
+	if(valor == numero){
 		document.getElementById("dica").innerHTML = "Parabéns você acertou!";
 	}
 	else{
-		verificaMenor(num);
+		verificaMenor(valor);
 	}
 }
 
@@ -35,12 +42,15 @@ function verificaMaior(valor){
 }
 
 function verificaQtdeTentativas(){
+	var num = document.getElementById("num1").value;
+
 	if(tentativas == 4){
 		document.getElementById("dica").innerHTML = "Você perdeu!! Tente Novamente";
+		document.getElementById("num1").value = "";
 		numero = Math.floor(Math.random() * 10);
 		tentativas = 0;
 	}
 	else{
-		verificarValor();
+		verificarValor(num);
 	}
 }
