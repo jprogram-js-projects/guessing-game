@@ -3,8 +3,7 @@ var numero = Math.floor(Math.random() * 10);
 var tentativas = 4;
 var acertou = false;
 
-// Resposta do valor para testar
-document.getElementById("dica").innerHTML = numero;
+// Resposta do valor para testar: document.getElementById("dica").innerHTML = numero;
 
 function jogar(){
 	verificaQtdeTentativas();
@@ -47,19 +46,24 @@ function darDicas(){
 
 	else{
 		setText("--> Valor inválido, informe novamente um valor!");
+		tentativas+=1;
 	}
 }
-
 
 function verificaQtdeTentativas(){
 	tentativas-=1;
 
-	switch(tentativas){
+	document.getElementById("qtdeTentativas").innerHTML = "Quantidade de Tentativas que ainda possui: " + tentativas;
+
+	validaTentativas(tentativas);
+}
+
+function validaTentativas(cont){
+	switch(cont){
 		case 0:
 			verificaSeAcertou();
 			if(!acertou){
-				document.getElementById("dica").innerHTML = "--> Você perdeu!! Tente Novamente";
-				document.getElementById("num1").value = "";
+				setText("--> Você perdeu!! Tente Novamente");
 			}
 
 			reiniciar();
@@ -69,10 +73,10 @@ function verificaQtdeTentativas(){
 		default:
 			verificaSeAcertou();		
 	}
-	document.getElementById("qtdeTentativas").innerHTML = "Quantidade de Tentativas que ainda possui: " + tentativas;
 }
 
 function reiniciar(){
 	numero = Math.floor(Math.random() * 10);
 	tentativas = 4;
+	document.getElementById("num1").value = "";
 }
