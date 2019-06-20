@@ -5,7 +5,7 @@ var acertou = false;
 
 // Resposta do valor para testar: document.getElementById("dica").innerHTML = numero;
 
-function jogar(){
+function playGame(){
 	verificaQtdeTentativas();
 }
 
@@ -26,6 +26,7 @@ function verificaSeAcertou(){
 		reiniciar();
 	}
 	else{
+		acertou = false;
 		darDicas();
 	}
 }
