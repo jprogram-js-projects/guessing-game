@@ -1,56 +1,78 @@
-/*
-	Jogo feito rapidamente aqui
-	Teoricamente está funcionando mas o código está pessimamente escrito
-	Agora que as funcionalidades principais estão funcionando
-	Vou melhorar o código retirando esses varios ifs e elses
-*/
-
 
 var numero = Math.floor(Math.random() * 10);
-var tentativas = 0;
+var tentativas = 4;
+var acertou = false;
 
 // Resposta do valor para testar
 document.getElementById("dica").innerHTML = numero;
 
-function verificarValor(valor){
+function jogar(){
+	verificaQtdeTentativas();
+}
 
-	tentativas += 1;
+function getValor(){
+	var num = document.getElementById("num1").value;
+	return num;
+}
 
-	document.getElementById("qtdeTentativas").innerHTML = "Quantidade de Tentativas: " + tentativas;
+function setText(txt){
+	document.getElementById("dica").innerHTML = txt;
+}
 
-	if(valor == numero){
-		document.getElementById("dica").innerHTML = "Parabéns você acertou!";
+function verificaSeAcertou(){
+	if(getValor() == numero){
+		setText("--> Parabéns você acertou! O Jogo será reiniciado");
+		acertou = true;
+
+		reiniciar();
 	}
 	else{
-		verificaMenor(valor);
+		darDicas();
 	}
 }
 
-function verificaMenor(valor){
-	if(valor < numero){
-		document.getElementById("dica").innerHTML = "Você errou, mas vou te dar uma dica: O número que estou pensando é maior do que você digitou!";
+function darDicas(){
+
+	if(getValor() < numero){
+		var msg = "--> Você errou, mas vou te dar uma dica: "+ 
+			" O número que pensei é maior do que você digitou!";
+		setText(msg);
 	}
+
+	else if(getValor() > numero){
+		var msg = "---> Você errou, mas vou te dar uma dica: "+
+			"O número que estou pensando é menor do que você digitou!";
+		setText(msg);
+	}
+
 	else{
-		verificaMaior(valor);
+		setText("--> Valor inválido, informe novamente um valor!");
 	}
 }
 
-function verificaMaior(valor){
-	if(valor > numero){
-		document.getElementById("dica").innerHTML = "Você errou, mas vou te dar uma dica: O número que estou pensando é menor do que você digitou!";
-	}
-}
 
 function verificaQtdeTentativas(){
-	var num = document.getElementById("num1").value;
+	tentativas-=1;
 
-	if(tentativas == 4){
-		document.getElementById("dica").innerHTML = "Você perdeu!! Tente Novamente";
-		document.getElementById("num1").value = "";
-		numero = Math.floor(Math.random() * 10);
-		tentativas = 0;
+	switch(tentativas){
+		case 0:
+			verificaSeAcertou();
+			if(!acertou){
+				document.getElementById("dica").innerHTML = "--> Você perdeu!! Tente Novamente";
+				document.getElementById("num1").value = "";
+			}
+
+			reiniciar();
+
+			break;
+
+		default:
+			verificaSeAcertou();		
 	}
-	else{
-		verificarValor(num);
-	}
+	document.getElementById("qtdeTentativas").innerHTML = "Quantidade de Tentativas que ainda possui: " + tentativas;
+}
+
+function reiniciar(){
+	numero = Math.floor(Math.random() * 10);
+	tentativas = 4;
 }
