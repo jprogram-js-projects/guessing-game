@@ -8,6 +8,6 @@ Pretendo criar na wiki a documentação desse programa explicando a lógica que 
 
 # Game: I'm thinking of a number ...
 
-(EN) I created this game to train my knowledge learned with the JavaScript Language manipulating the HTML5 DOM, the information is in en-br about the rules of how the game works, because I do not yet have much knowledge of English, I translated parts of the code and also this text by google translator.
+(EN) I created this game to train my knowledge learned with the JavaScript Language manipulating the HTML5 DOM, the information is in pt-br about the rules of how the game works, because I do not yet have much knowledge of English, I translated parts of the code and also this text by google translator.
 
 I want to create in the wiki the documentation of this program explaining the logic that I had to mount it. Any questions or hints to improve the algorithm, I will be happy to listen to them and answer them.
