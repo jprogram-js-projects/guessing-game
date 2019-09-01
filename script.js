@@ -1,13 +1,29 @@
-
-var mysterious_number = Math.floor(Math.random() * 10);
+var mysterious_number = 0;
 var attempts = 4;
 var found = false;
 
-// Resposta do valor para testar: document.getElementById("clue").innerHTML = numero;
+// Resposta do valor para testar: document.getElementById("clue").innerHTML = mysterious_number;
 
-function playGame(){
-	checkAttempts();
+document.querySelector('body').onload = function(){
+	var tex = ".: REGRAS :<br>"+
+				"1. O jogo de adivinhação onde o valor será algum valor de 0 a 9. <br/>"+
+				"2. Você possui apenas 4 tentativas para descobrir. <br/>"+
+				"3. Após acertar o número a ser descorberto, o jogo será reiniciado. <br/>"+
+				"4. Após as 4 tentativas e você não conseguir descobrir, o jogo se reinicia.";
+
+	swal({
+	  title: 'Seja Bem Vindo!',
+	  type: 'info',
+	  html: tex
+	});
 }
+
+
+document.querySelector('button.btnSubmit').onclick = function(){
+	mysterious_number = Math.floor(Math.random() * 10);
+
+	checkAttempts();
+} 
 
 function getValue(){
 	var num = document.getElementById("value").value;
@@ -18,10 +34,17 @@ function setMessage(text){
 	document.getElementById("clue").innerHTML = text;
 }
 
+function showSucessMessage(){
+	swal({
+	  title: 'Você Acertou!',
+	  type: 'success',
+	  html: "Parabéns você acertou! O Jogo será reiniciado"
+	});
+}
 
 function checkItsDone(){
 	if(getValue() == mysterious_number){
-		setMessage("--> Parabéns você acertou! O Jogo será reiniciado");
+		showSucessMessage();
 		found = true;
 
 		restart();
@@ -78,7 +101,7 @@ function checkNumberAttempts(cont){
 }
 
 function restart(){
-	mysterious_number = Math.floor(Math.random() * 10);
-	attempts = 4;
-	document.getElementById("value").value = "";
+	var mysterious_number = Math.floor(Math.random() * 10);
+	var attempts = 4;
+	var found = false;
 }
